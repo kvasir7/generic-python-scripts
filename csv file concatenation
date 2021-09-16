@@ -1,0 +1,9 @@
+import pandas as pd
+import glob
+
+path = '/home/joe/Documents/ISE/Contact List Project/ISE contact lists-20210808T012257Z-001/ISE contact lists/All Lists Revised'
+
+all_files = glob.glob(os.path.join(path, "data_*.csv"))
+df_from_each_file = (pd.read_csv(f, sep=',') for f in all_files)
+df_merged   = pd.concat(df_from_each_file, ignore_index=True)
+df_merged.to_csv( "merged.csv")
